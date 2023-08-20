@@ -1,15 +1,13 @@
 package main
 
 import (
-	repository "github.com/Julia-Marcal/reusable-api/repository"
-	_ "github.com/gin-gonic/gin"
+	controllers "github.com/Julia-Marcal/reusable-api/controllers"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	repository.NewPostgres()
-	/*
-		router := gin.Default()
-		router.GET("/ping", controllers.Pong)
-		router.Run()
-	*/
+
+	router := gin.Default()
+	router.GET("users/:id", controllers.GetUser)
+	router.Run()
 }

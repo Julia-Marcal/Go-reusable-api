@@ -1,9 +1,14 @@
 package database
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
 
 type User struct {
-	ID        string     `gorm:"primaryKey;size:50"`
+	Id        string     `gorm:"primaryKey"`
 	Name      string     `gorm:"not null;size:50" sql:"index"`
 	LastName  string     `gorm:"not null;size:50"`
 	Age       int32      `gorm:"not null"`
@@ -14,4 +19,9 @@ type User struct {
 
 func (User) TableName() string {
 	return "users"
+}
+
+func (user *User) BeforeCreate(tx *gorm.DB) (err error) {
+	user.Id = uuid.NewString()
+	return
 }
