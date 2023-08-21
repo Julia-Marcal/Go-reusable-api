@@ -8,6 +8,7 @@ import (
 func main() {
 	router := gin.Default()
 	router.GET("users/:id", controllers.GetUser)
-	router.POST("users", controllers.CreateUser)
+	router.GET("users/", controllers.GetAllUsers)
+	router.POST("users/", controllers.CreateUser)
 	router.Run()
 }
