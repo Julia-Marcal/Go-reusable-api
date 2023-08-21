@@ -16,8 +16,12 @@ func FindOne(id string) (*database.User, error) {
 	db := repository.NewSqlite()
 	user := &database.User{}
 	result := db.First(user, "id = ?", id)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	return user, nil
+	return user, result.Error
+}
+
+func FindUsers() (int64, error) {
+	db := repository.NewSqlite()
+	var users []database.User
+	result := db.Limit(10).Find(&users)
+	return result.RowsAffected, result.Error
 }
