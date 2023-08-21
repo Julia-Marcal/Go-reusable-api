@@ -16,5 +16,8 @@ func FindOne(id string) (*database.User, error) {
 	db := repository.NewSqlite()
 	user := &database.User{}
 	result := db.First(user, "id = ?", id)
-	return user, result.Error
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return user, nil
 }
