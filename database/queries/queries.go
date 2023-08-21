@@ -8,12 +8,7 @@ import (
 
 func Create(user_info *database.User) error {
 	db := repository.NewSqlite()
-	result := db.Create(&database.User{
-		Name:     user_info.Name,
-		LastName: user_info.LastName,
-		Age:      user_info.Age,
-		Email:    user_info.Email,
-	})
+	result := db.Create(user_info)
 	return result.Error
 }
 
