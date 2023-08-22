@@ -4,6 +4,7 @@ import (
 	database "github.com/Julia-Marcal/reusable-api/database"
 	repository "github.com/Julia-Marcal/reusable-api/repository"
 	_ "github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 func Create(user_info *database.User) error {
@@ -25,3 +26,10 @@ func FindUsers() (int64, error) {
 	result := db.Limit(10).Find(&users)
 	return result.RowsAffected, result.Error
 }
+
+func DeleteOne(id string) (*gorm.DB){
+	db := repository.NewSqlite()
+	user := &database.User{}
+	result := db.Delete(user, "id = ?", id)
+	return result
+} 
