@@ -1,5 +1,6 @@
 # Go-reusable-api
 An api created with golang, gin and gorm. The main function of this api is to be fast, reusable and easy to understand.
-set GCO_ENABLED=1 
-set PATH=C:\TDM-GCC-64\bin;%PATH% 
-go run main.go
+To run the docker file you should use these scripts:
+docker build -t go-reusable-api .
+docker run -p 8080:8080 go-reusable-api
+
