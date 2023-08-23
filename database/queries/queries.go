@@ -33,3 +33,10 @@ func DeleteOne(id string) (*gorm.DB){
 	result := db.Delete(user, "id = ?", id)
 	return result
 } 
+
+func GetPassword(id string) (string, error) {
+	db := repository.NewSqlite()
+	user := &database.User{}
+	result := db.First(user, "id = ?", id)
+	return user.Password, result.Error
+}
