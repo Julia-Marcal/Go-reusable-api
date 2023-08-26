@@ -24,18 +24,18 @@ func DeriveKey(password string, salt []byte) ([]byte, []byte, error) {
 	return key, salt, nil
 }
 
-func LoginSystem(password string, password_db string) (bool, error) {
+func LoginSystem(password string, password_db string) error {
 	salt := env.SetSalt()
 
 	password_compare, _, err := DeriveKey(password, salt)
 	if err != nil {
-		return false, err
+		return err
 	}
 
 	password_compare_str := string(password_compare)
 	if password_compare_str == password_db {
-		return true, nil
+		return nil
 	}
 
-	return false, nil
+	return nil
 }
