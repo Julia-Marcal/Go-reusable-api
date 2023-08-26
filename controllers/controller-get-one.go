@@ -7,16 +7,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type UserRequest struct {
+	Email string `json:"email"`
+}
+
 func GetUser(c *gin.Context) {
-	userId, exists := c.Params.Get("id")
-	if !exists {
+	var request UserRequest
+
+	if err := c.ShouldBindJSON(&request); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "User ID is required",
+			"error": "Invalid input data",
 		})
 		return
 	}
 
-	user, err := queries.FindOne(userId)
+	user, err := queries.FindUser(request.Email)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -36,4 +41,3 @@ func GetUser(c *gin.Context) {
 		"user":    user,
 	})
 }
-
