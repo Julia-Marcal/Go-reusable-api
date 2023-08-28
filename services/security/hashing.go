@@ -37,5 +37,5 @@ func LoginSystem(password string, password_db string) error {
 		return nil
 	}
 
-	return nil
+	return err
 }
