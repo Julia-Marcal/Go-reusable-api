@@ -3,7 +3,6 @@ package controllers
 import (
 	"net/http"
 
-	database "github.com/Julia-Marcal/reusable-api/database"
 	queries "github.com/Julia-Marcal/reusable-api/database/queries"
 	auth "github.com/Julia-Marcal/reusable-api/services/auth"
 	security "github.com/Julia-Marcal/reusable-api/services/security"
@@ -17,7 +16,6 @@ type TokenRequest struct {
 
 func GenerateToken(context *gin.Context) {
 	var request TokenRequest
-	var user database.User
 	if err := context.ShouldBindJSON(&request); err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		context.Abort()
@@ -32,15 +30,16 @@ func GenerateToken(context *gin.Context) {
 		return
 	}
 
-	err_pass := security.LoginSystem(request.Password, pass)
-	if err_pass != nil {
+	errPass := security.LoginSystem(request.Password, pass)
+	if errPass != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
 		return
 	}
 
-	tokenString, err := auth.GenerateJWT(user.Email, user.Name)
+	userInfo, _ := queries.FindUser(request.Email)
+	tokenString, err := auth.GenerateJWT(userInfo.Email, userInfo.Name)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		context.Abort()
