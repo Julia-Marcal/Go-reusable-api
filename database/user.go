@@ -2,6 +2,7 @@ package database
 
 import (
 	"time"
+
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 
@@ -14,7 +15,7 @@ type User struct {
 	Name      string     `gorm:"not null;size:50" sql:"index"`
 	LastName  string     `gorm:"not null;size:50"`
 	Age       int32      `gorm:"not null"`
-	Email     string     `gorm:"not null"`
+	Email     string     `gorm:"uniqueIndex"`
 	Password  string     `gorm:"not null"`
 	CreatedAt *time.Time `gorm:"default:current_timestamp"`
 	UpdatedAt *time.Time `gorm:"default:current_timestamp"`
