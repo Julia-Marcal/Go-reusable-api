@@ -1,0 +1,4 @@
+fazer queries mais rápidas
+adicionar metrics no projeto
+adicionar validator tipo zod
+testing
