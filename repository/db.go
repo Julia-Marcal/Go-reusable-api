@@ -4,15 +4,14 @@ import (
 	"fmt"
 
 	database "github.com/Julia-Marcal/reusable-api/database"
-	env "github.com/Julia-Marcal/reusable-api/services/env"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func NewPostgres() *gorm.DB {
-	conStr := env.SetPgConnection()
+	connectionStr := "user=postgres password=password dbname=api_db host=localhost port=5432 sslmode=disable"
 	fmt.Println("about to connect to database")
-	db, err := gorm.Open(postgres.Open(conStr), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(connectionStr), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect to database")
 	}
