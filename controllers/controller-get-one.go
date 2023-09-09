@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	queries "github.com/Julia-Marcal/reusable-api/database/queries"
+	cache "github.com/Julia-Marcal/reusable-api/repository/cache/caching-func"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +22,16 @@ func GetUser(c *gin.Context) {
 		return
 	}
 
+	cachedUser, cacheErr := cache.GetCachedUser(request.Email)
+
+	if cachedUser.Id != "" {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "User retrieved from cache",
+			"user":    cachedUser,
+		})
+		return
+	}
+
 	user, err := queries.FindUser(request.Email)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -32,6 +43,14 @@ func GetUser(c *gin.Context) {
 	if user == nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": "User not found",
+		})
+		return
+	}
+
+	cacheErr = cache.CacheUser(*user)
+	if cacheErr != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Failed to cache user",
 		})
 		return
 	}
