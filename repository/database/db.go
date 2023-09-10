@@ -9,7 +9,7 @@ import (
 )
 
 func NewPostgres() *gorm.DB {
-	connectionStr := "user=postgres password=password dbname=api_db host=localhost port=5432 sslmode=disable"
+	connectionStr := "user=postgres password=password dbname=api_db host=postgres port=5432 sslmode=disable"
 	fmt.Println("about to connect to database")
 	db, err := gorm.Open(postgres.Open(connectionStr), &gorm.Config{})
 	if err != nil {
