@@ -7,7 +7,7 @@ docker build -t go-reusable-api .
 docker run -p 8080:8080 go-reusable-api
 
 ## env.go 
-Env.go should have 2 functions:
+Env.go should have 1 function:
 func SetSalt that returns the salt in byte type
 
 
