@@ -5,17 +5,21 @@ import (
 
 	queries "github.com/Julia-Marcal/reusable-api/database/queries"
 	cache "github.com/Julia-Marcal/reusable-api/repository/cache/caching-func"
+	validation "github.com/Julia-Marcal/reusable-api/services/validation"
 	"github.com/gin-gonic/gin"
 )
 
 type UserRequest struct {
-	Email string `json:"email"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 func GetUser(c *gin.Context) {
 	var request UserRequest
 
-	if err := c.ShouldBindJSON(&request); err != nil {
+	validated := validation.EmailPassValidator(request)
+
+	if err := c.ShouldBindJSON(&request); err != nil || validated {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Invalid input data",
 		})

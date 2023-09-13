@@ -6,12 +6,16 @@ import (
 	database "github.com/Julia-Marcal/reusable-api/database"
 	queries "github.com/Julia-Marcal/reusable-api/database/queries"
 	cache "github.com/Julia-Marcal/reusable-api/repository/cache/caching-func"
+	validation "github.com/Julia-Marcal/reusable-api/services/validation"
 	"github.com/gin-gonic/gin"
 )
 
 func CreateUser(c *gin.Context) {
 	var user database.User
-	if err := c.ShouldBindJSON(&user); err != nil {
+
+	validated := validation.UserValidator(user)
+
+	if err := c.ShouldBindJSON(&user); err != nil || validated {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Invalid input data",
 		})

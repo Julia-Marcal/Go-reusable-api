@@ -6,6 +6,7 @@ import (
 	queries "github.com/Julia-Marcal/reusable-api/database/queries"
 	auth "github.com/Julia-Marcal/reusable-api/services/auth"
 	security "github.com/Julia-Marcal/reusable-api/services/security"
+	validation "github.com/Julia-Marcal/reusable-api/services/validation"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,7 +17,9 @@ type TokenRequest struct {
 
 func GenerateToken(context *gin.Context) {
 	var request TokenRequest
-	if err := context.ShouldBindJSON(&request); err != nil {
+
+	validated := validation.EmailPassValidator(request)
+	if err := context.ShouldBindJSON(&request); err != nil || validated {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		context.Abort()
 		return
