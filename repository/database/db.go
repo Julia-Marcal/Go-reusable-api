@@ -11,7 +11,10 @@ import (
 func NewPostgres() *gorm.DB {
 	connectionStr := "user=postgres password=password dbname=api_db host=postgres port=5432 sslmode=disable"
 	fmt.Println("about to connect to database")
-	db, err := gorm.Open(postgres.Open(connectionStr), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(connectionStr), &gorm.Config{
+		SkipDefaultTransaction: true,
+		//disable operations inside transaction to ensure data consistency
+	})
 	if err != nil {
 		panic("failed to connect to database")
 	}
