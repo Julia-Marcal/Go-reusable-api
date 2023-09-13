@@ -13,12 +13,12 @@ func StartRouter() {
 	{
 		api.GET("login/", controllers.GenerateToken)
 		api.GET("/metrics", metrics.PrometheusHandler())
+		api.POST("users/", controllers.CreateUser)
 		authorized := api.Group("/v1/").Use(middlewares.Auth())
 		{
 			authorized.GET("user/", controllers.GetUser)
 			authorized.GET("users/", controllers.GetAllUsers)
 			authorized.DELETE("users/:id", controllers.DeleteUser)
-			authorized.POST("users/", controllers.CreateUser)
 		}
 	}
 	router.Run()
