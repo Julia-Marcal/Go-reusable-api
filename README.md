@@ -22,21 +22,22 @@ Go-reusable-api is a highly performant, reusable, and easy-to-understand API bui
 ### Running with Docker
 Execute the following commands to build and run the Docker container:
 
-\```bash
+```bash
 docker build -t go-reusable-api .
 docker run -p 8080:8080 go-reusable-api
-\```
+```
 
 ## Configuration
 
 ### `env.go`
 This file should contain one function called `SetSalt` that returns the salt in byte type.
 
-\```go
+```go
 func SetSalt() []byte {
-    // Your implementation here
+	your_salt := "Hey"
+	return []byte(your_salt)
 }
-\```
+```
 
 ## Performance
 To ensure the highest level of performance, the API has:
