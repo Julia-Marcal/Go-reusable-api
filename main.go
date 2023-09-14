@@ -1,11 +1,11 @@
 package main
 
 import (
+	db "github.com/Julia-Marcal/reusable-api/repository/database"
 	router "github.com/Julia-Marcal/reusable-api/router"
-	newdb "github.com/Julia-Marcal/reusable-api/services"
 )
 
 func main() {
-	newdb.NewDB()
-	router.Start_Router()
+	db.NewPostgres()
+	router.StartRouter()
 }
