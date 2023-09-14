@@ -9,16 +9,19 @@ import (
 
 func StartRouter() {
 	router := gin.Default()
+
+	rateLimiter := middlewares.RateLimiting()
+
 	api := router.Group("/api")
 	{
-		api.GET("login/", controllers.GenerateToken)
-		api.GET("/metrics", metrics.PrometheusHandler())
-		api.POST("users/", controllers.CreateUser)
+		api.GET("login/", rateLimiter, controllers.GenerateToken)
+		api.GET("/metrics", rateLimiter, metrics.PrometheusHandler())
+		api.POST("users/", rateLimiter, controllers.CreateUser)
 		authorized := api.Group("/v1/").Use(middlewares.Auth())
 		{
-			authorized.GET("user/", controllers.GetUser)
-			authorized.GET("users/", controllers.GetAllUsers)
-			authorized.DELETE("users/:id", controllers.DeleteUser)
+			authorized.GET("user/", rateLimiter, controllers.GetUser)
+			authorized.GET("users/", rateLimiter, controllers.GetAllUsers)
+			authorized.DELETE("users/:id", rateLimiter, controllers.DeleteUser)
 		}
 	}
 	router.Run()
