@@ -3,6 +3,7 @@ module github.com/Julia-Marcal/reusable-api
 go 1.21
 
 require (
+	github.com/JGLTechnologies/gin-rate-limit v1.5.4
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/validator/v10 v10.14.0
