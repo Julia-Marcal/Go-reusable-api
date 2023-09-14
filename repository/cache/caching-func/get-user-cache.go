@@ -13,7 +13,7 @@ func GetCachedUser(email string) (database.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
 	defer cancel()
 
-	RedisClient := cache.RedisInit()
+	RedisClient, _ := cache.RedisInit()
 
 	userData, err := RedisClient.HGetAll(ctx, "user:"+email).Result()
 	if err != nil {

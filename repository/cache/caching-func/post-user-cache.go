@@ -15,7 +15,7 @@ func CacheUser(user database.User) error {
 
 	ctx := context.Background()
 
-	RedisClient := cache.RedisInit()
+	RedisClient, _ := cache.RedisInit()
 	userMap := map[string]interface{}{
 		"id":        user.Id,
 		"name":      user.Name,
