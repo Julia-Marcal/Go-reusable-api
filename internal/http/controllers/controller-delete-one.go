@@ -3,10 +3,9 @@ package controllers
 import (
 	"net/http"
 
-	queries "github.com/Julia-Marcal/reusable-api/database/queries"
+	queries "github.com/Julia-Marcal/reusable-api/internal/user/queries"
 	"github.com/gin-gonic/gin"
 )
-
 
 func DeleteUser(c *gin.Context) {
 	userId, exists := c.Params.Get("id")
@@ -30,4 +29,3 @@ func DeleteUser(c *gin.Context) {
 		"message": "User deleted successfully",
 	})
 }
-

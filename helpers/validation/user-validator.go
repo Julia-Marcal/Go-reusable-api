@@ -1,7 +1,7 @@
 package validation
 
 import (
-	database "github.com/Julia-Marcal/reusable-api/database"
+	database "github.com/Julia-Marcal/reusable-api/internal/user"
 	"github.com/go-playground/validator/v10"
 )
 

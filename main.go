@@ -1,8 +1,8 @@
 package main
 
 import (
-	db "github.com/Julia-Marcal/reusable-api/repository/database"
-	router "github.com/Julia-Marcal/reusable-api/router"
+	db "github.com/Julia-Marcal/reusable-api/internal/database"
+	router "github.com/Julia-Marcal/reusable-api/internal/http/router"
 )
 
 func main() {

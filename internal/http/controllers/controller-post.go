@@ -3,10 +3,10 @@ package controllers
 import (
 	"net/http"
 
-	database "github.com/Julia-Marcal/reusable-api/database"
-	queries "github.com/Julia-Marcal/reusable-api/database/queries"
-	cache "github.com/Julia-Marcal/reusable-api/repository/cache/caching-func"
-	validation "github.com/Julia-Marcal/reusable-api/services/validation"
+	validation "github.com/Julia-Marcal/reusable-api/helpers/validation"
+	cache "github.com/Julia-Marcal/reusable-api/internal/cache/caching-func"
+	database "github.com/Julia-Marcal/reusable-api/internal/user"
+	queries "github.com/Julia-Marcal/reusable-api/internal/user/queries"
 	"github.com/gin-gonic/gin"
 )
 

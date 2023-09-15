@@ -1,8 +1,8 @@
 package queries
 
 import (
-	database "github.com/Julia-Marcal/reusable-api/database"
-	repository "github.com/Julia-Marcal/reusable-api/repository/database"
+	repository "github.com/Julia-Marcal/reusable-api/internal/database"
+	database "github.com/Julia-Marcal/reusable-api/internal/user"
 	_ "github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )

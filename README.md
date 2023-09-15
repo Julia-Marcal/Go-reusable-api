@@ -29,7 +29,7 @@ docker run -p 8080:8080 go-reusable-api
 
 ## Configuration
 
-### `env.go`
+### `config/env/env.go`
 This file should contain one function called `SetSalt` that returns the salt in byte type.
 
 ```go
@@ -54,7 +54,7 @@ The API includes a Prometheus setup within the Docker container for real-time pe
 
 ## API Requests
 
-Examples for making API requests can be found in the `rest` folder. This should guide you on how to properly make requests to the API.
+Examples for making API requests can be found in the `config/rest` folder. This should guide you on how to properly make requests to the API.
 
 ### Required Parameters
 - `Email`
