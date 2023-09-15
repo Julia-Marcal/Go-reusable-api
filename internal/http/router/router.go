@@ -1,9 +1,8 @@
 package router
 
 import (
-	controllers "github.com/Julia-Marcal/reusable-api/controllers"
-	middlewares "github.com/Julia-Marcal/reusable-api/middlewares"
-	metrics "github.com/Julia-Marcal/reusable-api/services/metrics"
+	middlewares "github.com/Julia-Marcal/reusable-api/helpers/middlewares"
+	controllers "github.com/Julia-Marcal/reusable-api/internal/http/controllers"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,7 +14,7 @@ func StartRouter() {
 	api := router.Group("/api")
 	{
 		api.GET("login/", rateLimiter, controllers.GenerateToken)
-		api.GET("/metrics", rateLimiter, metrics.PrometheusHandler())
+		api.GET("/metrics", rateLimiter, middlewares.PrometheusHandler())
 		api.POST("users/", rateLimiter, controllers.CreateUser)
 		authorized := api.Group("/v1/").Use(middlewares.Auth())
 		{

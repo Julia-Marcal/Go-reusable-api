@@ -3,10 +3,10 @@ package controllers
 import (
 	"net/http"
 
-	queries "github.com/Julia-Marcal/reusable-api/database/queries"
-	auth "github.com/Julia-Marcal/reusable-api/services/auth"
-	security "github.com/Julia-Marcal/reusable-api/services/security"
-	validation "github.com/Julia-Marcal/reusable-api/services/validation"
+	auth "github.com/Julia-Marcal/reusable-api/helpers/auth"
+	security "github.com/Julia-Marcal/reusable-api/helpers/security"
+	validation "github.com/Julia-Marcal/reusable-api/helpers/validation"
+	queries "github.com/Julia-Marcal/reusable-api/internal/user/queries"
 	"github.com/gin-gonic/gin"
 )
 

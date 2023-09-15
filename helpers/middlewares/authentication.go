@@ -1,7 +1,7 @@
-package middlewares
+package handlers
 
 import (
-	auth "github.com/Julia-Marcal/reusable-api/services/auth"
+	auth "github.com/Julia-Marcal/reusable-api/helpers/auth"
 	"github.com/gin-gonic/gin"
 )
 

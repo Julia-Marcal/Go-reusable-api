@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	database "github.com/Julia-Marcal/reusable-api/database"
+	database "github.com/Julia-Marcal/reusable-api/internal/user"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

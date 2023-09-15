@@ -1,10 +1,10 @@
-package middlewares
+package handlers
 
 import (
 	"time"
 
 	ratelimit "github.com/JGLTechnologies/gin-rate-limit"
-	cache "github.com/Julia-Marcal/reusable-api/repository/cache"
+	cache "github.com/Julia-Marcal/reusable-api/internal/cache"
 	"github.com/gin-gonic/gin"
 )
 
