@@ -40,6 +40,15 @@ func SetSalt() []byte {
 }
 ```
 
+It also should contain a function called  `envGo`, so that you can set your database information.
+
+```go 
+func envGo() {
+    os.Setenv("database", "host=example-db server user=fakeuser password=fakepassword dbname=fakedb port=1234 sslmode=require")
+}
+
+```
+
 ## Performance
 To ensure the highest level of performance, the API has:
 - Cache optimization through Redis.
@@ -106,6 +115,15 @@ func SetSalt() []byte {
     seu_salt := "Hey"
     return []byte(seu_salt)
 }
+```
+
+Também deve conter uma função chamada `envGo`, para que você possa definir as informações do seu banco de dados.
+
+```go 
+func envGo() {
+    os.Setenv("database", "host=example-db server user=fakeuser password=fakepassword dbname=fakedb port=1234 sslmode=require")
+}
+
 ```
 
 ## Desempenho
