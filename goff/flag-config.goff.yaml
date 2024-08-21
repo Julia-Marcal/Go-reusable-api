@@ -1,0 +1,11 @@
+# only admins will eval to true
+flag-only-for-admin:
+  variations:
+    is-admin: true
+    not-admin: false
+  defaultRule:
+    variation: not-admin
+  targeting:
+    - name: check admin
+      query: admin eq true
+      variation: is-admin

@@ -18,7 +18,7 @@ services:
   test:
     build:
       context: .
-    command: ["go", "test", "./..."]
+    command: [ "go", "test", "./..." ]
     depends_on:
       postgres:
         condition: service_healthy
@@ -26,8 +26,6 @@ services:
         condition: service_healthy
     networks:
       - monitoring
-
-
 
   postgres:
     image: postgres:latest
@@ -42,7 +40,7 @@ services:
         aliases:
           - postgres
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -56,7 +54,7 @@ services:
         aliases:
           - redis
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 1s
       timeout: 3s
       retries: 30
@@ -71,6 +69,15 @@ services:
       monitoring:
         aliases:
           - prometheus
+
+  go-feature-flag:
+    image: gofeatureflag/go-feature-flag:latest
+    ports:
+      - "1031:1031"
+    volumes:
+      - ./flag-config.goff.yaml:/goff/flag-config.goff.yaml
+      - ./goff-proxy.yaml:/goff/goff-proxy.yaml
+    restart: always
 
 networks:
   monitoring:
