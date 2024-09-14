@@ -123,7 +123,6 @@ Também deve conter uma função chamada `envGo`, para que você possa definir a
 func envGo() {
     os.Setenv("database", "host=example-db server user=fakeuser password=fakepassword dbname=fakedb port=1234 sslmode=require")
 }
-
 ```
 
 ## Desempenho

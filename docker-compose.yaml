@@ -60,24 +60,30 @@ services:
       retries: 30
 
   prometheus:
-    image: prom/prometheus:latest
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    image: docker.io/prom/prometheus:v2.54.1
+    container_name: prometheus
     ports:
       - "9090:9090"
-    networks:
-      monitoring:
-        aliases:
-          - prometheus
-
-  go-feature-flag:
-    image: gofeatureflag/go-feature-flag:latest
-    ports:
-      - "1031:1031"
+    command: "--config.file=/etc/prometheus/prometheus.yaml"
     volumes:
-      - ./flag-config.goff.yaml:/goff/flag-config.goff.yaml
-      - ./goff-proxy.yaml:/goff/goff-proxy.yaml
-    restart: always
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+
+  grafana:
+    image: docker.io/grafana/grafana-oss:11.2.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+
+volumes:
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
 
 networks:
   monitoring:
