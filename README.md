@@ -73,6 +73,10 @@ Examples for making API requests can be found in the `config/rest` folder. This 
 
 Remember to include your email, password, and the appropriate bearer token when making API calls.
 
+## New Features:
+- [ ] **Load-Balancer**
+- [ ] **Add Feature Flags**
+
 
 ## PT-BR
 
@@ -148,3 +152,7 @@ Exemplos de como fazer requisições à API podem ser encontrados na pasta `rest
 - `Token Bearer`
 
 Lembre-se de incluir seu e-mail, senha e token de portador apropriado ao fazer chamadas de API.
+
+## Novas features:
+- [ ] **Load-Balancer**
+- [ ] **Adicionar Feature Flags**
