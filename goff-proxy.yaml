@@ -1,8 +1,0 @@
-listen: 1031
-pollingInterval: 1000
-startWithRetrieverError: false
-retriever:
-  kind: file
-  path: /goff/flag-config.goff.yaml
-exporter:
-  kind: log
