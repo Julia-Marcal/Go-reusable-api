@@ -18,7 +18,7 @@ services:
   test:
     build:
       context: .
-    command: [ "go", "test", "./..." ]
+    command: [ "go", "./..." ]
     depends_on:
       postgres:
         condition: service_healthy
