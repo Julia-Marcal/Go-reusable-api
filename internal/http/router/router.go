@@ -3,8 +3,20 @@ package router
 import (
 	middlewares "github.com/Julia-Marcal/reusable-api/helpers/middlewares"
 	controllers "github.com/Julia-Marcal/reusable-api/internal/http/controllers"
+
 	"github.com/gin-gonic/gin"
+	"github.com/swaggo/gin-swagger" 
+	"github.com/swaggo/files" 
+
+	"./docs"
 )
+
+// @contact.name   API Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
 
 func StartRouter() {
 	router := gin.Default()
@@ -23,5 +35,7 @@ func StartRouter() {
 			authorized.DELETE("users/:id", rateLimiter, controllers.DeleteUser)
 		}
 	}
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.Run()
 }
