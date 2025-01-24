@@ -74,7 +74,7 @@ Examples for making API requests can be found in the `config/rest` folder. This 
 Remember to include your email, password, and the appropriate bearer token when making API calls.
 
 ## New Features:
-- [ ] **Adding Swagger docummentation with swag** 
+- [ ] **Adding Swagger docummentation with swaggo** 
 - [ ] **Adding govalidator**
 - [ ] **Load-Balancer**
 - [ ] **Add Feature Flags**
