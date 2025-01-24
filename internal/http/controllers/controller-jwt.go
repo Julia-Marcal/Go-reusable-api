@@ -28,7 +28,7 @@ func GenerateToken(context *gin.Context) {
 		Password: request.Password,
 	})
 
-	if validated == true {
+	if validated {
 		context.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
 		context.Abort()
 		return
