@@ -5,10 +5,9 @@ import (
 	controllers "github.com/Julia-Marcal/reusable-api/internal/http/controllers"
 
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/gin-swagger" 
-	"github.com/swaggo/files" 
 
-	"./docs"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // @contact.name   API Support
@@ -25,9 +24,10 @@ func StartRouter() {
 
 	api := router.Group("/api")
 	{
-		api.GET("login/", rateLimiter, controllers.GenerateToken)
+		api.POST("/login", rateLimiter, controllers.GenerateToken)
 		api.GET("/metrics", rateLimiter, middlewares.PrometheusHandler())
-		api.POST("users/", rateLimiter, controllers.CreateUser)
+		api.POST("/users", rateLimiter, controllers.CreateUser)
+
 		authorized := api.Group("/v1/").Use(middlewares.Auth())
 		{
 			authorized.GET("user/", rateLimiter, controllers.GetUser)

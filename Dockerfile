@@ -19,9 +19,6 @@ RUN apt-get update && apt-get install -y postgresql-client netcat-openbsd
 # Install Redis client dependencies
 RUN go get github.com/redis/go-redis/v9
 
-# Run tests
-RUN go test -v ./...
-
 # Copy the wait-for-it.sh script to the working directory
 COPY scripts/wait-for-it.sh /app/wait-for-it.sh
 

@@ -27,8 +27,6 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "A highly performant, reusable, and easy-to-understand API built with Golang, Gin, and Gorm.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
 }
 
 

@@ -1,6 +1,8 @@
 package queries
 
 import (
+	"fmt"
+
 	repository "github.com/Julia-Marcal/reusable-api/internal/database"
 	database "github.com/Julia-Marcal/reusable-api/internal/user"
 	_ "github.com/gin-gonic/gin"
@@ -9,6 +11,7 @@ import (
 
 func Create(user_info *database.User) error {
 	db := repository.NewPostgres()
+	fmt.Println(db)
 	result := db.Create(user_info)
 	return result.Error
 }
