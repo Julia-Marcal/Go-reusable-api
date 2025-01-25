@@ -17,16 +17,22 @@ var (
 
 func NewPostgres() *gorm.DB {
 	once.Do(func() {
+		var err error
+
 		connectionStr := "user=postgres password=password dbname=api_db host=postgres port=5432 sslmode=disable"
 		fmt.Println("about to connect to database")
-		db, err := gorm.Open(postgres.Open(connectionStr), &gorm.Config{
+
+		db, err = gorm.Open(postgres.Open(connectionStr), &gorm.Config{
 			SkipDefaultTransaction: true,
-			//disable operations inside transaction to ensure data consistency
 		})
 		if err != nil {
-			panic("failed to connect to database")
+			panic(fmt.Sprintf("failed to connect to database: %v", err))
 		}
-		db.AutoMigrate(&database.User{})
+		err = db.AutoMigrate(&database.User{})
+		if err != nil {
+			panic(fmt.Sprintf("failed to migrate database: %v", err))
+		}
 	})
+
 	return db
 }
